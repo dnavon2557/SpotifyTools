@@ -120,7 +120,6 @@ h1 {
     position: absolute;
     height: 3em;
     width: 3em;
-    line-height: 3em;
     right: 2%;
     bottom: 2%;
     border-radius: 100%;
@@ -131,11 +130,18 @@ h1 {
     cursor: pointer;
 }
 #authorize-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+
     color: #4A4A4A;
     text-align: center;
     font-size: 0.45em;
     font-weight: 500;
-    padding: 2.7em 0;
+    padding: 0 0;
     margin: auto 0;
 
 
