@@ -39,13 +39,13 @@ h1 {
     display: block;
     position: absolute;
     font-size: 0.5em;
-    animation: 4400ms linear 0s infinite alternate float;
+    animation: 10400ms linear 0s infinite alternate float;
     animation-direction: alternate;
-    -moz-animation:              4400ms linear 0s infinite alternate float;
+    -moz-animation:              10400ms linear 0s infinite alternate float;
     -moz-animation-direction:    alternate;
-    -webkit-animation:           4400ms linear 0s infinite alternate float;
+    -webkit-animation:           10400ms linear 0s infinite alternate float;
     -webkit-animation-direction: alternate;
-    -o-animation:                4400ms linear 0s infinite alternate float;
+    -o-animation:                10400ms linear 0s infinite alternate float;
     -o-animation-direction:      alternate;
 }
 @keyframes float {
@@ -89,31 +89,31 @@ h1 {
 .tool-name:nth-child(2) {
     top: 5%;
     left: 40%;
-    animation-delay: -3000ms;
+    animation-delay: -5000ms;
 
 }
 .tool-name:nth-child(3) {
     top: 15%;
     left: 35%;
-    animation-delay: -500ms;
+    animation-delay: -800ms;
 
 }
 .tool-name:nth-child(4) {
     top: 30%;
     left: 20%;
-    animation-delay: -1000ms;
+    animation-delay: -2000ms;
 
 }
 .tool-name:nth-child(5) {
     top: 50%;
     left: 30%;
-    animation-delay: -1400ms;
+    animation-delay: -8400ms;
 
 }
 .tool-name:nth-child(6) {
     top: 60%;
     left: 20%;
-    animation-delay: -2000ms;
+    animation-delay: -6000ms;
 
 }
 #authorize-button {
