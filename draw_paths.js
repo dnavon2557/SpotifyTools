@@ -1,5 +1,8 @@
 $(document).ready(function() {
     draw_paths();
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    });
 });
 function draw_paths () {
     $("#authorize-tools").HTMLSVGconnect({

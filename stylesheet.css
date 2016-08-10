@@ -81,36 +81,36 @@ h1 {
         -o-transform: translate(25%, 25%);
     }
 }
-.tool-name:nth-child(1) {
+h1.tool-name:nth-child(1) {
     top: 0;
     left: 50%;
     animation-delay: -100ms;
 }
-.tool-name:nth-child(2) {
+h1.tool-name:nth-child(2) {
     top: 5%;
     left: 40%;
     animation-delay: -5000ms;
 
 }
-.tool-name:nth-child(3) {
+h1.tool-name:nth-child(3) {
     top: 15%;
     left: 35%;
     animation-delay: -800ms;
 
 }
-.tool-name:nth-child(4) {
+h1.tool-name:nth-child(4) {
     top: 30%;
     left: 20%;
     animation-delay: -2000ms;
 
 }
-.tool-name:nth-child(5) {
+h1.tool-name:nth-child(5) {
     top: 50%;
     left: 30%;
     animation-delay: -8400ms;
 
 }
-.tool-name:nth-child(6) {
+h1.tool-name:nth-child(6) {
     top: 60%;
     left: 20%;
     animation-delay: -6000ms;
@@ -125,9 +125,13 @@ h1 {
     border-radius: 100%;
     background-color: #2FD566;
     border: 1px solid #979797;
+    transition: width 0.15s, height 0.15s;
+    -webkit-transition: width 0.15s, height 0.15s;
 }
 #authorize-button:hover {
     cursor: pointer;
+    height: 3.1em;
+    width: 3.1em;
 }
 #authorize-text {
     position: absolute;
@@ -145,4 +149,10 @@ h1 {
     margin: auto 0;
 
 
+}
+.popover-title {
+    font-size: 0.45em;
+}
+.popover-content {
+    font-size: 0.3em;
 }
