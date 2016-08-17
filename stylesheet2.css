@@ -1,0 +1,75 @@
+body {background-color: #222222;}
+
+.navbar-inverse {
+  background-color: #000000;
+  height: 8vh;
+}
+
+/*.navbar-brand {
+    color: #DD5285;
+}*/
+
+.tool-name {
+    font-size: 0.5em
+    color: #DD5285;
+}
+
+#title-row {
+    height: 15vh;
+}
+
+#content-row {
+    height: 75vh;
+}
+
+#info-box {
+    height: 50%;
+    background-color: #DD5285;
+    margin: 2%;
+    padding: 5%;
+    box-shadow: -10px 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+#info-box p {
+    font-size: 0.5em;
+    color: #222222;
+}
+
+#authorize-tools {
+    display: block;
+    position: relative;
+    height: 80vh;
+    color: #E8D5DC;
+}
+
+#authorize-button {
+    position: absolute;
+    height: 3em;
+    width: 3em;
+    right: 2%;
+    bottom: 2%;
+    border-radius: 100%;
+    background-color: #DD5285;
+}
+#authorize-button:hover {
+    cursor: pointer;
+    height: 3.1em;
+    width: 3.1em;
+}
+#authorize-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+
+    color: #222222;
+    text-align: center;
+    font-size: 0.45em;
+    font-weight: 500;
+    padding: 0 0;
+    margin: auto 0;
+
+
+}
