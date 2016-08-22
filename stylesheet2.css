@@ -5,17 +5,27 @@ body {background-color: #222222;}
   height: 8vh;
 }
 
-/*.navbar-brand {
-    color: #DD5285;
-}*/
+.navbar-brand {
+    color: #ffffff;
+}
 
 .tool-name {
     font-size: 0.5em
     color: #DD5285;
 }
 
+.tool-name:hover {
+    font-size: 0.9em
+    color: #DD5285;
+}
+
+#tools li {
+    font-size: 0.5em
+    color: #005285;
+}
+
 #title-row {
-    height: 15vh;
+    height: 10vh;
 }
 
 #content-row {
@@ -25,7 +35,7 @@ body {background-color: #222222;}
 #info-box {
     height: 50%;
     background-color: #DD5285;
-    margin: 2%;
+    margin: 5%;
     padding: 5%;
     box-shadow: -10px 10px 0 rgba(0, 0, 0, 0.4);
 }
@@ -38,8 +48,8 @@ body {background-color: #222222;}
 #authorize-tools {
     display: block;
     position: relative;
-    height: 80vh;
-    color: #E8D5DC;
+    height: 50vh;
+    color: #ffffff;
 }
 
 #authorize-button {

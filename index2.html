@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Spotify Tools</title> <!--Needs better title-->
+
         <!--JQuery CDN. Any scripts that use JQuery must be declared after this-->
         <script
         			  src="https://code.jquery.com/jquery-3.1.0.min.js"
         			  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
         			  crossorigin="anonymous"></script>
+
         <!--Bootstrap-->
         <script src="bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" 
+        media="screen" title="no title" charset="utf-8">
+
         <!--plugin to create lines between html elems-->
         <script src="jquery.html-svg-connect.js" type="text/javascript"></script>
+
         <!--custom/override styles-->
-        <link rel="stylesheet" href="stylesheet2.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="stylesheet2.css" media="screen" 
+        title="no title" charset="utf-8">
+
     </head>
 
     <body>
+        <!-- navigation bar  -->
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index2.html"><span>Spotify Toolbox</span></a>
+                    <a class="navbar-brand" href="index2.html">
+                    <span style="color:white">Spotify Toolbox</span></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul id="options" class="nav navbar-nav navbar-right">
@@ -34,46 +44,57 @@
             </div>
         </div>
 
+        <!-- this is where pages should begin to differ...I think -->   
         <div class="container-fluid" id="main-contain">
-            <div class="row" id="title-row"></div>
+            <div class="row" id="title-row"></div> <!-- spacing -->
             <div class="row" id="content-row">
-                <div class="col-xs-4 col-sm-4">
+                <div class="col-xs-12 col-sm-4">
                     <div id="info-box">
                         <p>
-                            Access a suite of tools to start making your perfect playlist now
+                            <span style="color:white">Spotify Toolbox</span>
+                             is a suite of tools that use your Spotify listening 
+                             habits and playlists to do some super cool things!
                         </p>
                         <p class="lead">
-                            Hover over a tool to find out more or press authorize to get started
+                            Due to the nature of the Spotify API you'll have to 
+                            authorize each tool individually. You can do so by 
+                            clicking on the tool you want to use and clicking 
+                            on the authorize button in the bottom right corner.
                         </p>
                     </div>
                 </div>
-                <div class="col-xs-8 col-sm-offset-2 col-sm-6">
+                <div class="col-xs-5 col-sm-offset-1 col-sm-3">
                     <div id="authorize-tools">
-                        <div id="tools">
-                            <div class="tool-name">
-                                VibeStation
-                            </div>
-                            <div class="tool-name">
+                        <ul id="tools" style="list-style:none">
+                            <li><a class="tool-name" href="relations.html">
+                                Relations
+                            </a></li>
+                            <li><a class="tool-name" href="tool_template.html">
                                 HowLit
-                            </div>
-                            <div class="tool-name">
+                            </a></li>
+                            <li><a class="tool-name" href="tool_template.html">
                                 HomePlay
-                            </div>
-                            <div class="tool-name">
-                                PlayGround
-                            </div>
-                            <div class="tool-name">
-                                GetHype
-                            </div>
-                            <div class="tool-name">
-                                inTune
-                            </div>
-                        </div>
-                        <div id="authorize-button">
-                            <h1 id="authorize-text">Authorize</h1>
-                        </div>
+                            </a></li>
+                        </ul>
                     </div>
                 </div>
+
+                <div class="col-xs-5 col-sm-3">
+                    <div id="authorize-tools">
+                        <ul id="tools" style="list-style:none">
+                            <li><a class="tool-name" href="tool_template.html">
+                                VibeStation
+                            </a></li>
+                            <li><a class="tool-name" href="tool_template.html">
+                                GetHype
+                            </a></li>
+                            <li><a class="tool-name" href="tool_template.html">
+                                inTune
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </body>
