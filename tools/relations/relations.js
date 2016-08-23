@@ -11,6 +11,7 @@ var numRel = 5; //number of related artists per saved artist to use
 var numToShow = 10; //number of related artists to display
 var eachArtistOnce = true; //if true, if there are multiple saved tracks by one artist, it will only add their related artists once
 var removeSavedArtists = false; //if true removes any related artists that are also a saved artist
+var retry = true;
 
 function error(msg) {
     info(msg);
@@ -79,6 +80,7 @@ function callSpotify(url, data, callback) {
                 if(!retryAfter && retry) { 
                     retry = false;
                     retryAfter = 5;
+                    console.log("retrying");
                     setTimeout(callSpotify(url, data, callback), retryAfter * 1000);
                 }
             },
