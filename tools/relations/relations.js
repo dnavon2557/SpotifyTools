@@ -21,8 +21,8 @@ function info(msg) {
 }
 
 function authorizeUser() {
-    var client_id = '3792a5d756f443fd9aaeee46523168a5';
-    var redirect_uri = 'http://localhost:8000/MySavedTracks';
+    var client_id = '7fc1ac4a76fe46fbb0d8b2791512daf2';
+    var redirect_uri = 'http://localhost:8000/SpotifyTools/tools/relations/relations.html';
 
     var url = 'https://accounts.spotify.com/authorize?client_id=' + client_id +
         '&response_type=token' +
@@ -68,17 +68,18 @@ function callSpotify(url, data, callback) {
             'Authorization': 'Bearer ' + accessToken
         },
         success: function(r) {
+            $("#authorize-button").hide();
             callback(r);
         },
         statusCode: {
             429: function(r) {
-                console.log("hi");
                 var retryAfter = r.getResponseHeader('Retry-After');
                 console.log("TMR, Retry-After: " + retryAfter);
                 retryAfter = parseInt(retryAfter);
                 if(retryAfter >= 0) {
                     console.log("RA " + retryAfter);
                 }
+                callback(r);
             },
             502: function(r) {
                 console.log("five oh two");
@@ -117,10 +118,6 @@ function getArtists(tracks) {
             artOrder.push(id);
             addRelated(id); //add artist's related artists to relList
         }
-
-        // var artistName = item.track.artists[0].name;
-        // var itemElement = $("<div>").text(item.track.name + ' - ' + artistName);
-        // list.append(itemElement);
     });
 
     if (tracks.next) {
@@ -131,23 +128,12 @@ function getArtists(tracks) {
         console.log("done getting tracks");
         removeSavedFromRelated();
     }
-    // var len = 0;
-    // var x;
-
-    // for (x in relatedList) {
-    //     console.log("x: " + x);
-    //     if (relatedList.hasOwnProperty(x)) {
-    //         len++;
-    //     }
-    // }
-    // console.log(len);
 }
 
 function removeSavedFromRelated() {
     //for each related artist
     //check if id is also in artistList
     //if so, remove it from relatedList
-    console.log("rsfr");
     if(rCount == 0) {
         return;
     }
@@ -212,6 +198,7 @@ function displayLists() {
     $("#main").show();
     $("#intro").hide();
     $("#artist-list").empty();
+    Alist.append($("<h2>").text("ARTISTS"));
     info("");
 
     for(var i = 0; i < artOrder.length; i++) {
@@ -226,6 +213,7 @@ function displayLists() {
     }
 
     $("#related-list").empty();
+    Rlist.append($("<h2>").text("RELATED"));
     info("");
 
     for(var i = 0; i < relOrder.length; i++) {
@@ -245,7 +233,6 @@ function displayLists() {
 $(document).ready(
     function() {
         var args = parseArgs();
-
         if ('access_token' in args) {
             accessToken = args['access_token'];
             $("#go").hide();
@@ -269,6 +256,12 @@ $(document).ready(
             $("#go").show();
             $("#go").on('click', function() {
                 authorizeUser();
+                $("#authorize-button").hide();
+            });
+            $("#authorize-button").on('click', function() {
+                authorizeUser();
+                $("#authorize-button").hide();
+                $("#go").show();
             });
         }
     }

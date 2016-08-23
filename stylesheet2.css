@@ -19,6 +19,10 @@ body {background-color: #222222;}
     color: #DD5285;
 }
 
+#header-title {
+    color: #FFFFFF;
+}
+
 #tools li {
     font-size: 0.5em
     color: #005285;
@@ -53,7 +57,7 @@ body {background-color: #222222;}
 }
 
 #authorize-button {
-    position: absolute;
+    position: fixed;
     height: 3em;
     width: 3em;
     right: 2%;
@@ -67,7 +71,7 @@ body {background-color: #222222;}
     width: 3.1em;
 }
 #authorize-text {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
