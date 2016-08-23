@@ -68,22 +68,23 @@ function callSpotify(url, data, callback) {
             'Authorization': 'Bearer ' + accessToken
         },
         success: function(r) {
-            $("#authorize-button").hide();
+            retry = true;
             callback(r);
         },
         statusCode: {
             429: function(r) {
                 var retryAfter = r.getResponseHeader('Retry-After');
+                retryAfter = parseInt(retryAfter, 10);
                 console.log("TMR, Retry-After: " + retryAfter);
-                retryAfter = parseInt(retryAfter);
-                if(retryAfter >= 0) {
-                    console.log("RA " + retryAfter);
+                if(!retryAfter && retry) { 
+                    retry = false;
+                    retryAfter = 5;
+                    setTimeout(callSpotify(url, data, callback), retryAfter * 1000);
                 }
-                callback(r);
             },
             502: function(r) {
                 console.log("five oh two");
-                callback(r);
+                setTimeout(callSpotify(url, data, callback), 2000);
             }
         }
     });
@@ -160,7 +161,7 @@ function addRelated(id) {
         }
         var idVal = artistList[id];
 
-        for(var i = 0; i < numRel; i++) {
+        for(var i = 0; i < numRel && i < rels.artists.length; i++) {
 
             var j = 0;
             if(eachArtistOnce)
@@ -236,6 +237,7 @@ $(document).ready(
         if ('access_token' in args) {
             accessToken = args['access_token'];
             $("#go").hide();
+            $("#authorize-button").hide();
             info('Getting your user profile');
             fetchCurrentUserProfile(function(user) {
                 if (user) {
