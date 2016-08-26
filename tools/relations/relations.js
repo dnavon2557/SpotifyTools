@@ -81,8 +81,8 @@ function callSpotify(url, data, callback) {
                     retry = false;
                     retryAfter = 5;
                     console.log("retrying");
-                    setTimeout(callSpotify(url, data, callback), retryAfter * 1000);
                 }
+                    setTimeout(callSpotify(url, data, callback), retryAfter * 1000);
             },
             502: function(r) {
                 console.log("five oh two");
