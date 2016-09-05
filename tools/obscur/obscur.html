@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">\
         <!--custom/override styles-->
         <link rel="stylesheet" href="../../stylesheet2.css" media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" href="relations.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="obscur.css" media="screen" title="no title" charset="utf-8">
     </head>
 
     <body>
@@ -43,37 +43,36 @@
             <div class="row" id="title-row"></div>
             <div class="row" id="content-row">
                   <div id ="intro"class="container">
-                      <h1>Relations</h1>
-                      <p class="lead">This tool lists the frequency of arists that appear 
-                        as one of the first 5 related artists for each of your saved track, 
-                        as well as the number of saved tracks from each artist (>2).</p>
-                      <div id="search-form" class="form-inline">
-                          <span class="xform-control">
-                              <button class="btn btn-outline-default btn-large" id='go' type="button">Show My Related Artists</button> 
-                          </span>
-                      </div>
+                      <h1>Obscur</h1>
+                      <p class="lead">This tool takes the average popularity of your top artists and
+                        returns an overall obscurity rating for your Spotify listening habits.</p>
+                  </div>
+                    <div id="buttons" class="row">
+                        <span class="col-xs-offset-2 xform-control">
+                            <button class="btn btn-outline-default btn-sm" id='short_term' type="button">Short Term Rating</button> 
+                        </span>
+                        <span class="xform-control">
+                            <button class="btn btn-outline-default btn-sm" id='medium_term' type="button">Medium Term Rating</button> 
+                        </span>
+                        <span class="xform-control">
+                            <button class="btn btn-outline-default btn-sm" id='long_term' type="button">Long Term Rating</button> 
+                        </span>
+                    </div>
                       <div id="info"> </div>
-                  </div>
-                  <div id="main" class="container">
-                      <h1> Related Artists for <span id="who"> </span></h1>
-                      <hr>
-                      <div id="artist-list" class="col-xs-offset-1 col-xs-4"></div>
-                      <div id="related-list" class="col-xs-offset-2 col-xs-4"></div>
-                  </div>
               </div>
+            <div id="main" class="row">
+                <h1> Obscurity rating for <span id="who"> </span></h1>
+                <hr>
+                <div id="ranking" class="col-xs-12"></div>
+                
+            </div>
 
                 <div class="col-sm-offset-11 col-sm-1" id="authorize-button">
                     <h1 id="authorize-text">Authorize</h1>
                 </div>
           </div>
-        <script src="relations.js"></script>
+        <script src="obscur.js"></script>
     </body>
 </html>
 
-
-<!--
-    TODO
-    Add options
-    Fix Too Many Requests error 
--->
     

@@ -79,11 +79,11 @@ function callSpotify(url, data, callback) {
                     retryAfter = 5;
                     console.log("retrying");
                 }
-                setTimeout(callSpotify(url, data, callback), retryAfter * 1000);
+                setTimeout(callSpotify(url, data, callback), 3600);
             },
             502: function(r) {
                 console.log("five oh two");
-                setTimeout(callSpotify(url, data, callback), 2000);
+                setTimeout(callSpotify(url, data, callback), 36000);
             }
         }
     });
@@ -234,24 +234,26 @@ $(document).ready(
     function() {
         var args = parseArgs();
         if ('access_token' in args) {
-            accessToken = args['access_token'];
-            $("#go").hide();
             $("#authorize-button").hide();
-            info('Getting your user profile');
-            fetchCurrentUserProfile(function(user) {
-                if (user) {
-                    $("#who").text(user.id);
-                    info('Getting your saved tracks');
-                    fetchSavedTracks(function(data) {
-                        if (data) {
-                            getArtists(data);
-                        } else {
-                            error("Trouble getting your saved tracks");
-                        }
-                    });
-                } else {
-                    error("Trouble getting the user profile");
-                }
+            $("#go").on('click', function() {
+                accessToken = args['access_token'];
+                $("#go").hide();
+                info('Getting your user profile');
+                fetchCurrentUserProfile(function(user) {
+                    if (user) {
+                        $("#who").text(user.id);
+                        info('Getting your saved tracks');
+                        fetchSavedTracks(function(data) {
+                            if (data) {
+                                getArtists(data);
+                            } else {
+                                error("Trouble getting your saved tracks");
+                            }
+                        });
+                    } else {
+                        error("Trouble getting the user profile");
+                    }
+                });
             });
         } else {
             $("#go").show();
