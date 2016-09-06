@@ -2,12 +2,12 @@ var accessToken = null;
 var refreshToken = null;
 var args = null;
 var artistLimit = 50;
-var mostObscure = {}; //contains highest popularity artist value and name
-var leastObscure = {}; //contains lowest popularity artist value and name
+var mostObscure = {name: "", popularity: 100}; //contains highest popularity artist value and name
+var leastObscure = {name: "", popularity: 0}; //contains lowest popularity artist value and name
+var totalObscurity = 0; //total popularity points of all top artists
+var artistCount = 0; //total number of top artists avaiable/found
 var term = "medium_term";
-var artistList = {}; //list of saved artist ids and their frequencies
-var idNames = {}; //index is artist ID, value is artist name as a string
-var relOrder = []; //sortable version of relatedList
+var dat;
 
 function error(msg) {
     info(msg);
@@ -87,12 +87,26 @@ function getAverage(data) {
         console.log("no data");
     }
 
-    var total = 0; //total popularity points
-    var artistCount = 0;
+    dat = data;
 
     _.each(data.items, function(item) {
-        var id = item.track.artists[0].id; //artist ID
+        var name = item.name;
+        var popularity = item.popularity;
+        totalObscurity += popularity;
+        artistCount++;
 
+        console.log(name + ": " + popularity);
+
+        if (popularity > leastObscure['popularity']) {
+            console.log("least");
+            leastObscure.popularity = popularity;
+            leastObscure.name = name;
+        }
+        if (popularity < mostObscure['popularity']) {
+            console.log("most");
+            mostObscure.popularity = popularity;
+            mostObscure.name = name;
+        }
     });
 
     if (data.next) {
@@ -102,6 +116,34 @@ function getAverage(data) {
     } else {
         console.log("done getting data");
     }
+
+    var rank = totalObscurity/artistCount;
+    rank = Math.round(rank*10)/10;
+
+    console.log(totalObscurity + " / " + artistCount);
+    console.log(rank);
+
+    $("#main").show();
+    $("#intro-text").hide();
+    $("#ranking").empty();
+    $("#ranking").append($("<h1>").text(rank));
+    $("#ranking").append($("<div>").text("Most obscure: " + 
+                                        mostObscure.name + ": " + 
+                                        mostObscure.popularity ));
+    $("#ranking").append($("<div>").text("Least obscure: " + 
+                                        leastObscure.name + ": " + 
+                                        leastObscure.popularity));
+    info("");
+    reset();
+}
+
+function reset() {
+
+    totalObscurity = 0;
+    artistCount = 0;
+
+    mostObscure = {name: "", popularity: 100};
+    leastObscure = {name: "", popularity: 0};
 }
 
 $(document).ready(
