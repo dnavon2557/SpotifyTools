@@ -1,5 +1,9 @@
 var accessToken = null;
-var count = 0;
+var refreshToken = null;
+var args = null;
+var artistLimit = 50;
+var mostObscure = {}; //contains highest popularity artist value and name
+var leastObscure = {}; //contains lowest popularity artist value and name
 var term = "medium_term";
 var artistList = {}; //list of saved artist ids and their frequencies
 var idNames = {}; //index is artist ID, value is artist name as a string
@@ -19,7 +23,7 @@ function authorizeUser() {
 
     var url = 'https://accounts.spotify.com/authorize?client_id=' + client_id +
         '&response_type=token' +
-        '&scope=user-library-read' +
+        '&scope=user-top-read' +
         '&redirect_uri=' + encodeURIComponent(redirect_uri);
     document.location = url;
 }
@@ -43,7 +47,8 @@ function fetchCurrentUserProfile(callback) {
 }
 
 function fetchTopArtists(limit, time_range, callback) {
-    var url = 'https://api.spotify.com/v1/me/top/artists?limit=' + limit + '?time_range=' + time_range;
+    var url = 'https://api.spotify.com/v1/me/top/artists' +
+    '?time_range=' + time_range + '&limit=' + limit;
     callSpotify(url, {}, callback);
 }
 
@@ -78,14 +83,33 @@ function callSpotify(url, data, callback) {
 }
 
 function getAverage(data) {
-    console.log("run");
+    if(!data) {
+        console.log("no data");
+    }
+
+    var total = 0; //total popularity points
+    var artistCount = 0;
+
+    _.each(data.items, function(item) {
+        var id = item.track.artists[0].id; //artist ID
+
+    });
+
+    if (data.next) {
+        callSpotify(data.next, {}, function(data) {
+            getAverage(data);
+        });
+    } else {
+        console.log("done getting data");
+    }
 }
 
 $(document).ready(
     function() {
-        var args = parseArgs();
+        args = parseArgs();
         if ('access_token' in args) {
             accessToken = args['access_token'];
+            //refreshToken = args['refresh_token'];
             $("#authorize-button").hide();
             $(":button").on('click', function(event) {
                 term = event.toElement.id;
@@ -98,7 +122,7 @@ $(document).ready(
                     if (user) {
                         $("#who").text(user.id);
                         info('Getting your ' + term.replace('_', ' ') +  ' rating');
-                        fetchTopArtists(25, term, function(data) {
+                        fetchTopArtists(artistLimit, term, function(data) {
                             if (data) {
                                 getAverage(data);
                             } else {
